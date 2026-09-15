@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IDT LEVEL UP MULTI GAME CHALLENGE ระดับชาติ ครั้งที่ 1</title>
     
-    <!-- ฟอนต์ Kanit -->
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <!-- นำเข้า FontAwesome สำหรับไอคอน -->
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -55,7 +54,6 @@
             line-height: 1.4;
         }
 
-        /* เมนูนำทาง (อ้างอิงจากรูปภาพ image_4022d5.png) */
         .nav-menu {
             display: flex;
             justify-content: center;
@@ -67,10 +65,10 @@
         }
 
         .nav-btn {
-            background-color: rgba(26, 31, 56, 0.8); /* สีน้ำเงินเข้มตามรูป */
+            background-color: rgba(26, 31, 56, 0.8);
             border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 50px;
-            color: #b0b3c6; /* สีเทาอ่อน */
+            color: #b0b3c6;
             padding: 12px 25px;
             font-family: 'Kanit', sans-serif;
             font-size: 1.1em;
@@ -94,7 +92,6 @@
             box-shadow: 0 0 15px rgba(0, 229, 255, 0.2);
         }
 
-        /* ส่วนเนื้อหาในแต่ละแท็บ */
         .tab-content {
             display: none;
             animation: fadeIn 0.5s ease;
@@ -109,7 +106,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* สไตล์เนื้อหา (Grid & รางวัล) */
         .info-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -152,7 +148,6 @@
         .prize-item span:last-child { font-weight: 600; color: #00e5ff; }
         .sub-text { font-size: 0.85em; color: #aaaaaa; display: block; }
 
-        /* สไตล์สำหรับกล่องแผนที่ */
         .map-box {
             background: rgba(0, 0, 0, 0.4);
             border: 2px dashed rgba(255, 255, 255, 0.3);
@@ -169,7 +164,6 @@
             color: #00e5ff;
         }
 
-        /* ปุ่มกดแบบ E-sports */
         .btn-container {
             display: flex;
             flex-direction: column;
@@ -234,7 +228,6 @@
     <div class="container">
         <h1>🏆 IDT LEVEL UP MULTI GAME CHALLENGE <br>ระดับชาติ ครั้งที่ 1</h1>
         
-        <!-- เมนู 3 ปุ่ม -->
         <div class="nav-menu">
             <button class="nav-btn active" onclick="openTab(event, 'tab-details')">
                 <i class="fa-solid fa-circle-info"></i> ข้อมูลรายละเอียดงาน
@@ -247,7 +240,6 @@
             </button>
         </div>
 
-        <!-- แท็บ 1: ข้อมูลรายละเอียดงาน -->
         <div id="tab-details" class="tab-content active">
             <div class="info-grid">
                 <p>📅 <strong>วันแข่งขัน:</strong> 2 ธันวาคม 2026</p>
@@ -285,13 +277,11 @@
             </div>
         </div>
 
-        <!-- แท็บ 2: ผังจัดสถานที่ -->
         <div id="tab-map" class="tab-content">
             <h3>📍 ผังการจัดงานและสถานที่แข่งขัน</h3>
             <div class="map-box">
                 <i class="fa-regular fa-image"></i>
                 <p>สามารถนำรูปภาพผังสถานที่ (Map) <br>มาใส่แทนที่ข้อความในส่วนนี้ได้เลย</p>
-                <!-- ตัวอย่างการใส่รูป: <img src="link-รูปภาพผังงาน" alt="ผังงาน" style="width:100%; border-radius:10px;"> -->
             </div>
             <p style="text-align: left; padding: 0 20px;">
                 <strong>สถานที่:</strong> มหาวิทยาลัยราชมงคลรัตนโกสินทร์ วิทยาเขต วังไกลกังวล<br>
@@ -299,46 +289,37 @@
             </p>
         </div>
 
-        <!-- แท็บ 3: สมัครลงแข่ง -->
         <div id="tab-register" class="tab-content">
             <h3>📝 ขั้นตอนการสมัครและทดลองเล่น</h3>
             <p>กรุณาเตรียมข้อมูลทีมให้พร้อมก่อนทำการสมัครลงแข่งขัน<br>เปิดรับสมัครถึงวันที่ <strong>30 ตุลาคม 2026</strong> เท่านั้น!</p>
             
             <div class="btn-container">
-                <!-- ลิ้งก์ฟอร์มสมัคร -->
                 <a href="https://forms.gle/oHo4CokdX76Q1y1X6" class="btn btn-register"><i class="fa-solid fa-trophy"></i> สมัครลงแข่งขัน คลิกที่นี่</a>
                 
-                <!-- ปุ่มโหลดเกม -->
                 <button onclick="downloadGame()" class="btn btn-download"><i class="fa-solid fa-gamepad"></i> ทดลองเล่น / โหลดเกม</button>
             </div>
         </div>
 
     </div>
 
-    <!-- สคริปต์สำหรับการทำงานของ Tab และปุ่ม -->
     <script>
-        // ฟังก์ชันสลับหน้าแท็บ
         function openTab(evt, tabName) {
             var i, tabcontent, navbtns;
 
-            // ซ่อนเนื้อหาทั้งหมด
             tabcontent = document.getElementsByClassName("tab-content");
             for (i = 0; i < tabcontent.length; i++) {
                 tabcontent[i].classList.remove("active");
             }
 
-            // ลบสถานะ active ออกจากปุ่มทั้งหมด
             navbtns = document.getElementsByClassName("nav-btn");
             for (i = 0; i < navbtns.length; i++) {
                 navbtns[i].classList.remove("active");
             }
 
-            // แสดงเนื้อหาที่เลือก และเพิ่มสถานะ active ให้ปุ่มที่โดนกด
             document.getElementById(tabName).classList.add("active");
             evt.currentTarget.classList.add("active");
         }
 
-        // ฟังก์ชันดาวน์โหลดเกมแยกต่างหาก
         function downloadGame() {
             if(confirm("ระบบจะพาคุณไปยังหน้าต่างใหม่ เพื่อโหลดเกม/ทดลองเล่น ยืนยันหรือไม่?")) {
                 window.open('http://www.realsteel.rf.gd/', '_blank');

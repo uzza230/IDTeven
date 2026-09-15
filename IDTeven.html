@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IDT LEVEL UP MULTI GAME CHALLENGE ระดับชาติ ครั้งที่ 1</title>
+    
+    <!-- ฟอนต์ Kanit -->
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- นำเข้า FontAwesome สำหรับไอคอน -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Kanit', sans-serif;
+            color: #ffffff;
+            background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #1a0b2e);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 800px;
+            width: 90%;
+            margin: 40px 0;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            color: #00e5ff;
+            text-shadow: 0 0 10px rgba(0, 229, 255, 0.6);
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        /* เมนูนำทาง (อ้างอิงจากรูปภาพ image_4022d5.png) */
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-btn {
+            background-color: rgba(26, 31, 56, 0.8); /* สีน้ำเงินเข้มตามรูป */
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 50px;
+            color: #b0b3c6; /* สีเทาอ่อน */
+            padding: 12px 25px;
+            font-family: 'Kanit', sans-serif;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background-color: rgba(43, 51, 87, 0.9);
+            color: #ffffff;
+        }
+
+        .nav-btn.active {
+            background-color: rgba(0, 229, 255, 0.15);
+            border-color: #00e5ff;
+            color: #00e5ff;
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.2);
+        }
+
+        /* ส่วนเนื้อหาในแต่ละแท็บ */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* สไตล์เนื้อหา (Grid & รางวัล) */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+            text-align: left;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        .info-grid p { margin: 0; font-size: 1.1em; }
+        .highlight-red { color: #ff4757; font-weight: bold; }
+        .highlight-green { color: #2ed573; font-weight: bold; }
+        
+        .prize-section {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(0, 0, 0, 0.4));
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .prize-section h2 {
+            text-align: center;
+            color: #ffd700;
+            margin-top: 0;
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+        }
+
+        .prize-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px dashed rgba(255,255,255,0.2);
+            font-size: 1.1em;
+        }
+        .prize-item:last-child { border-bottom: none; }
+        .prize-item span:last-child { font-weight: 600; color: #00e5ff; }
+        .sub-text { font-size: 0.85em; color: #aaaaaa; display: block; }
+
+        /* สไตล์สำหรับกล่องแผนที่ */
+        .map-box {
+            background: rgba(0, 0, 0, 0.4);
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            padding: 50px 20px;
+            text-align: center;
+            color: #aaaaaa;
+            margin-bottom: 20px;
+        }
+
+        .map-box i {
+            font-size: 3em;
+            margin-bottom: 15px;
+            color: #00e5ff;
+        }
+
+        /* ปุ่มกดแบบ E-sports */
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-family: 'Kanit', sans-serif;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .btn-register {
+            background: linear-gradient(90deg, #ff007f, #ff00ff);
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(255, 0, 127, 0.5);
+        }
+
+        .btn-register:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 0 25px rgba(255, 0, 127, 0.8);
+        }
+
+        .btn-download {
+            background: transparent;
+            color: #00e5ff;
+            border: 2px solid #00e5ff;
+        }
+
+        .btn-download:hover {
+            background: #00e5ff;
+            color: #000000;
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.6);
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 600px) {
+            .prize-item { flex-direction: column; text-align: center; gap: 5px; }
+            h1 { font-size: 1.8em; }
+            .nav-btn { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🏆 IDT LEVEL UP MULTI GAME CHALLENGE <br>ระดับชาติ ครั้งที่ 1</h1>
+        
+        <!-- เมนู 3 ปุ่ม -->
+        <div class="nav-menu">
+            <button class="nav-btn active" onclick="openTab(event, 'tab-details')">
+                <i class="fa-solid fa-circle-info"></i> ข้อมูลรายละเอียดงาน
+            </button>
+            <button class="nav-btn" onclick="openTab(event, 'tab-map')">
+                <i class="fa-solid fa-map-location-dot"></i> ผังจัดสถานที่
+            </button>
+            <button class="nav-btn" onclick="openTab(event, 'tab-register')">
+                <i class="fa-solid fa-pen-to-square"></i> สมัครลงแข่ง
+            </button>
+        </div>
+
+        <!-- แท็บ 1: ข้อมูลรายละเอียดงาน -->
+        <div id="tab-details" class="tab-content active">
+            <div class="info-grid">
+                <p>📅 <strong>วันแข่งขัน:</strong> 2 ธันวาคม 2026</p>
+                <p>📍 <strong>สถานที่:</strong> มหาวิทยาลัยราชมงคลรัตนโกสินทร์ วิทยาเขต วังไกลกังวล</p>
+                <p>⏳ <strong>เปิดรับสมัคร:</strong> วันนี้ ถึง <span class="highlight-red">30 ตุลาคม 2026</span></p>
+                <p>⚔️ <strong>รูปแบบการแข่งขัน:</strong> <span class="highlight-green">แข่งแบบ 2 ใน 3 (Best of 3)</span></p>
+            </div>
+
+            <div class="prize-section">
+                <h2>💰 โครงสร้างรางวัลการแข่งขัน (รวม 6,000 บาท)</h2>
+                <div class="prize-item">
+                    <span>🥇 รางวัลชนะเลิศอันดับ 1</span>
+                    <span>3,000 บาท</span>
+                </div>
+                <div class="prize-item">
+                    <span>🥈 รางวัลรองชนะเลิศอันดับ 1 (ที่ 2)</span>
+                    <span>1,500 บาท</span>
+                </div>
+                <div class="prize-item">
+                    <span>🥉 รางวัลรองชนะเลิศอันดับ 2 (ที่ 3)</span>
+                    <span>500 บาท</span>
+                </div>
+                <div class="prize-item">
+                    <span>🏅 รางวัลชมเชย 1
+                        <span class="sub-text">เงินรางวัลคู่ละ 500 บาท (คนละ 250 บาท)</span>
+                    </span>
+                    <span>500 บาท</span>
+                </div>
+                <div class="prize-item">
+                    <span>🏅 รางวัลชมเชย 2
+                        <span class="sub-text">เงินรางวัลคู่ละ 500 บาท (คนละ 250 บาท)</span>
+                    </span>
+                    <span>500 บาท</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- แท็บ 2: ผังจัดสถานที่ -->
+        <div id="tab-map" class="tab-content">
+            <h3>📍 ผังการจัดงานและสถานที่แข่งขัน</h3>
+            <div class="map-box">
+                <i class="fa-regular fa-image"></i>
+                <p>สามารถนำรูปภาพผังสถานที่ (Map) <br>มาใส่แทนที่ข้อความในส่วนนี้ได้เลย</p>
+                <!-- ตัวอย่างการใส่รูป: <img src="link-รูปภาพผังงาน" alt="ผังงาน" style="width:100%; border-radius:10px;"> -->
+            </div>
+            <p style="text-align: left; padding: 0 20px;">
+                <strong>สถานที่:</strong> มหาวิทยาลัยราชมงคลรัตนโกสินทร์ วิทยาเขต วังไกลกังวล<br>
+                <em>(จุดลงทะเบียนและจุดรายงานตัว จะแจ้งให้ทราบที่หน้างาน)</em>
+            </p>
+        </div>
+
+        <!-- แท็บ 3: สมัครลงแข่ง -->
+        <div id="tab-register" class="tab-content">
+            <h3>📝 ขั้นตอนการสมัครและทดลองเล่น</h3>
+            <p>กรุณาเตรียมข้อมูลทีมให้พร้อมก่อนทำการสมัครลงแข่งขัน<br>เปิดรับสมัครถึงวันที่ <strong>30 ตุลาคม 2026</strong> เท่านั้น!</p>
+            
+            <div class="btn-container">
+                <!-- ลิ้งก์ฟอร์มสมัคร -->
+                <a href="https://forms.gle/oHo4CokdX76Q1y1X6" class="btn btn-register"><i class="fa-solid fa-trophy"></i> สมัครลงแข่งขัน คลิกที่นี่</a>
+                
+                <!-- ปุ่มโหลดเกม -->
+                <button onclick="downloadGame()" class="btn btn-download"><i class="fa-solid fa-gamepad"></i> ทดลองเล่น / โหลดเกม</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- สคริปต์สำหรับการทำงานของ Tab และปุ่ม -->
+    <script>
+        // ฟังก์ชันสลับหน้าแท็บ
+        function openTab(evt, tabName) {
+            var i, tabcontent, navbtns;
+
+            // ซ่อนเนื้อหาทั้งหมด
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+
+            // ลบสถานะ active ออกจากปุ่มทั้งหมด
+            navbtns = document.getElementsByClassName("nav-btn");
+            for (i = 0; i < navbtns.length; i++) {
+                navbtns[i].classList.remove("active");
+            }
+
+            // แสดงเนื้อหาที่เลือก และเพิ่มสถานะ active ให้ปุ่มที่โดนกด
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        // ฟังก์ชันดาวน์โหลดเกมแยกต่างหาก
+        function downloadGame() {
+            if(confirm("ระบบจะพาคุณไปยังหน้าต่างใหม่ เพื่อโหลดเกม/ทดลองเล่น ยืนยันหรือไม่?")) {
+                window.open('http://www.realsteel.rf.gd/', '_blank');
+            }
+        }
+    </script>
+
+</body>
+</html>
